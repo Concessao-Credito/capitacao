@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: captacao
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+  datasource:
+    url: jdbc:postgresql://localhost:5432/captacao?currentSchema=captacao
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: d93580133@gmail.com
+    password: "enjp ufwf lksg vygh"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+server:
+  address: 0.0.0.0
+  port: 8086
+
