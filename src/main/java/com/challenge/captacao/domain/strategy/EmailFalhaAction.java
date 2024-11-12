@@ -21,7 +21,11 @@ public class EmailFalhaAction implements ActionStrategy {
         variaveis.put("nome", request.getClienteRequest().getNome());
 
         try {
-            emailService.enviarEmail(request.getClienteRequest().getEmail(), "Resultado Conciliação Credito", variaveis);
+            emailService.enviarEmail(
+                    request.getClienteRequest().getEmail(),
+                    "Resultado Conciliação Credito",
+                    variaveis,
+                    "email-erro.html");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

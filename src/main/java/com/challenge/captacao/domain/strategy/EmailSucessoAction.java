@@ -19,9 +19,14 @@ public class EmailSucessoAction implements ActionStrategy {
     public void execute(ProcessadoraCreditoCompletoRequest request) {
         Map<String, Object> variaveis = new HashMap<>();
         variaveis.put("nome", request.getClienteRequest().getNome());
+        variaveis.put("valor", request.getPropostaRequest().getValorLiberado());
 
         try {
-            emailService.enviarEmail(request.getClienteRequest().getEmail(), "Resultado Conciliação Credito", variaveis);
+            emailService.enviarEmail(
+                    request.getClienteRequest().getEmail(),
+                    "Resultado Conciliação Credito",
+                    variaveis,
+                    "email-sucesso.html");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

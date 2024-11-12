@@ -22,18 +22,18 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    public void enviarEmail(String para, String assunto, Map<String, Object> variaveis)
+    public void enviarEmail(String para, String assunto, Map<String, Object> variaveis, String template)
             throws MessagingException, IOException {
 
         Context context = new Context();
         context.setVariables(variaveis);
 
-        String body = templateEngine.process("email-template", context);
+        String body = templateEngine.process(template, context);
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
         helper.setTo(para);
-        helper.setSubject("Bem-vindo!");
+        helper.setSubject("Analise de dados");
         helper.setText(body, true);
 
         mailSender.send(mimeMessage);
